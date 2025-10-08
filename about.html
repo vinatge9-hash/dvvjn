@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About - Aurora Coffee Collective</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    :root { --primary:#3C2A21; --secondary:#85583A; --accent:#E0A36D; --glass-bg: rgba(60,42,33,0.7); --glass-border: rgba(133,88,58,0.25); --gradient-1: linear-gradient(135deg, #fa709a 0%, #fee140 100%); --gradient-2: linear-gradient(135deg, #85583A 0%, #E0A36D 100%); --shadow-color: rgba(224,163,109,0.3); }
+    .glass { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px; }
+  </style>
+</head>
+<body class="bg-black text-white">
+  <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="index.html" class="text-xl font-bold" style="background: var(--gradient-2); -webkit-background-clip: text; color: transparent;">Aurora Coffee Collective</a>
+      <div class="hidden md:flex space-x-6 text-sm">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <a href="menu.html" class="hover:text-white">Menu</a>
+        <a href="about.html" class="hover:text-white">About</a>
+        <a href="contact.html" class="hover:text-white">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="min-h-screen flex items-center" style="background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54f60?q=80&w=1600&auto=format&fit=crop'); background-size: cover; background-position: center;" data-parallax>
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative z-10 text-center w-full px-6 py-24">
+      <h1 class="text-4xl md:text-6xl font-extrabold" style="background: var(--gradient-2); -webkit-background-clip: text; color: transparent;">Our Story</h1>
+      <p class="mt-4 text-lg md:text-xl">From seed to cup, we obsess over quality, community, and craftsmanship.</p>
+    </div>
+  </header>
+
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass-card p-6">
+        <h3 class="text-xl font-semibold mb-2">Sourcing & Sustainability</h3>
+        <p class="text-sm">We partner with co-ops focused on fair wages, shade-grown practices, and traceable beans.</p>
+      </div>
+      <div class="glass-card p-6">
+        <h3 class="text-xl font-semibold mb-2">Roasting Philosophy</h3>
+        <p class="text-sm">Small batches, light to medium roasts that highlight origin notes.</p>
+      </div>
+      <div class="glass-card p-6">
+        <h3 class="text-xl font-semibold mb-2">Community Space</h3>
+        <p class="text-sm">A warm, glassy environment that invites conversation and creativity.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-8 text-center text-sm opacity-70">
+    © Aurora Coffee Collective — Crafting memorable moments since 2024
+  </section>
+
+  <script>
+    // Reuse global init scripts from index.html if needed; for simplicity, keep minimal here
+    // Ensure same UI features across pages by invoking the shared initialization if available
+    if (typeof initAllModernFeatures === 'function') {
+      document.addEventListener('DOMContentLoaded', initAllModernFeatures);
+    }
+  </script>
+</body>
+</html>
