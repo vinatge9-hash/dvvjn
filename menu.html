@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu - Aurora Coffee Collective</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    :root { --primary:#3C2A21; --secondary:#85583A; --accent:#E0A36D; --glass-bg: rgba(60,42,33,0.7); --glass-border: rgba(133,88,58,0.25); }
+  </style>
+</head>
+<body class="bg-black text-white">
+  <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="index.html" class="text-xl font-bold" style="background: var(--gradient-2); -webkit-background-clip: text; color: transparent;">Aurora Coffee Collective</a>
+      <div class="hidden md:flex space-x-6 text-sm">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <a href="menu.html" class="hover:text-white">Menu</a>
+        <a href="about.html" class="hover:text-white">About</a>
+        <a href="contact.html" class="hover:text-white">Contact</a>
+      </div>
+    </div>
+  </nav>
+  <header class="min-h-screen flex items-center" style="background-image: url('https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1600&auto=format&fit=crop'); background-size: cover; background-position: center;" data-parallax>
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative z-10 w-full text-center px-6 py-24">
+      <h1 class="text-4xl md:text-6xl font-extrabold" style="background: var(--gradient-2); -webkit-background-clip: text; color: transparent;">Our Coffee Menu</h1>
+      <p class="mt-2 text-lg">Crafted beverages, espresso classics, and seasonal specials.</p>
+    </div>
+  </header>
+
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Menu Item Card (Glass) -->
+      <div class="glass-card p-6">
+        <div class="text-3xl mb-2">☕</div>
+        <h3 class="font-semibold">Espresso</h3>
+        <p class="text-sm text-gray-300">Intense, creamy shot finished with caramel notes.</p>
+        <div class="mt-2 text-lg">$3.50</div>
+      </div>
+      <div class="glass-card p-6">
+        <div class="text-3xl mb-2">🥛</div>
+        <h3 class="font-semibold">Cappuccino</h3>
+        <p class="text-sm text-gray-300">Balanced with velvety foam and nutty undertones.</p>
+        <div class="mt-2 text-lg">$4.50</div>
+      </div>
+      <div class="glass-card p-6">
+        <div class="text-3xl mb-2">🍯</div>
+        <h3 class="font-semibold">Vanilla Bean Latte</h3>
+        <p class="text-sm text-gray-300">Sweet vanilla, espresso, and steamed milk.</p>
+        <div class="mt-2 text-lg">$5.00</div>
+      </div>
+      <div class="glass-card p-6">
+        <div class="text-3xl mb-2">🫖</div>
+        <h3 class="font-semibold">Pour-Over</h3>
+        <p class="text-sm text-gray-300">Bright and clean with tasting notes of citrus.</p>
+        <div class="mt-2 text-lg">$5.50</div>
+      </div>
+      <div class="glass-card p-6">
+        <div class="text-3xl mb-2">❄️</div>
+        <h3 class="font-semibold">Iced Cold Brew</h3>
+        <p class="text-sm text-gray-300">Smooth, mellow, and refreshing.</p>
+        <div class="mt-2 text-lg">$4.25</div>
+      </div>
+      <div class="glass-card p-6">
+        <div class="text-3xl mb-2">🌿</div>
+        <h3 class="font-semibold">Seasonal Special</h3>
+        <p class="text-sm text-gray-300">Rotating house creation—ask us what’s new.</p>
+        <div class="mt-2 text-lg">Depends</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-6 text-center text-sm text-gray-300">
+    All prices in USD. We roast in small batches for peak flavor.
+  </section>
+
+  <script>
+    // Reuse features from index.html if available
+    if (typeof initAllModernFeatures === 'function') { document.addEventListener('DOMContentLoaded', initAllModernFeatures); }
+  </script>
+</body>
+</html>
