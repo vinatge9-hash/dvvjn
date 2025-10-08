@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurora Coffee Collective</title>
+  <meta name="description" content="Aurora Coffee Collective — handcrafted coffee, glassmorphism UI, particle background, custom cursor, and dynamic dark mode." />
+  <!-- Tailwind CSS CDN (100% Tailwind CSS) -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Coffee Shop color system (Section 2. Coffee Shop) */
+    :root {
+      --primary: #3C2A21;
+      --secondary: #85583A;
+      --accent: #E0A36D;
+      --glass-bg: rgba(60, 42, 33, 0.7);
+      --glass-border: rgba(133, 88, 58, 0.25);
+      --gradient-1: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      --gradient-2: linear-gradient(135deg, #85583A 0%, #E0A36D 100%);
+      --shadow-color: rgba(224, 163, 109, 0.3);
+    }
+
+    /* Glassmorphism helpers (Section 3) */
+    .glass { background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 12px; }
+    .glass-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; }
+    .glass-nav { background: var(--glass-bg); border-bottom: 1px solid var(--glass-border); }
+    .glass-button { background: var(--glass-bg); border: 1px solid var(--glass-border); }
+  </style>
+</head>
+<body class="antialiased" style="background: #0b0b0b; color: #e5e5e5;">
+  <!-- Glassy Navigation -->
+  <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-bold" style="background: var(--gradient-2); -webkit-background-clip: text; color: transparent;">Aurora Coffee Collective</a>
+      <div class="hidden md:flex space-x-6 text-sm">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <a href="menu.html" class="hover:text-white">Menu</a>
+        <a href="about.html" class="hover:text-white">About</a>
+        <a href="contact.html" class="hover:text-white">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Parallax effect -->
+  <section class="min-h-screen flex items-center" style="background-image: url('https://images.unsplash.com/photo-1521497580602-8f3f1a0d1119?q=80&w=1600&auto=format&fit=crop'); background-size: cover; background-position: center;" data-parallax>
+    <div class="absolute inset-0" style="background: rgba(0,0,0,0.55);"></div>
+    <div class="relative z-10 w-full text-center px-6 py-20">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-4" style="background: var(--gradient-2); -webkit-background-clip: text; color: transparent;">Aurora Coffee Collective</h1>
+      <p class="text-lg md:text-xl mb-6">Handcrafted espresso, pour-overs, and seasonal delights in a glassy, immersive space.</p>
+      <div class="flex justify-center gap-4">
+        <a href="menu.html" class="glass-button px-6 py-3 rounded-full">View Menu</a>
+        <a href="about.html" class="glass-button px-6 py-3 rounded-full">Our Story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass-card p-6 text-center">
+        <div class="text-3xl mb-2">🟤</div>
+        <h3 class="text-lg font-semibold">Small-batch Roastery</h3>
+        <p class="text-sm">Fresh beans roasted daily for depth and character.</p>
+      </div>
+      <div class="glass-card p-6 text-center">
+        <div class="text-3xl mb-2">☕</div>
+        <h3 class="text-lg font-semibold">Seasonal Menu</h3>
+        <p class="text-sm">Rotating drinks inspired by harvest and weather.</p>
+      </div>
+      <div class="glass-card p-6 text-center">
+        <div class="text-3xl mb-2">✨</div>
+        <h3 class="text-lg font-semibold">Glassmorphic Experience</h3>
+        <p class="text-sm">Elegant UI, immersive interactions, and smooth motion.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimal Testimonial Row -->
+  <section class="py-8 bg-black/20">
+    <div class="max-w-4xl mx-auto text-center px-4">
+      <p class="text-sm">“The best pour-over I’ve tasted in months. The space is magical.”</p>
+      <p class="text-xs mt-2 text-gray-300">— Taylor, regular guest</p>
+    </div>
+  </section>
+
+  <!-- Loading Screen (index page) -->
+  <div id="loading-screen" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+    <div class="text-center">
+      <div class="w-16 h-16 border-4 border-white border-t-transparent rounded-full mx-auto mb-4 animate-spin"></div>
+      <div id="loading-text" class="text-white">Loading</div>
+    </div>
+  </div>
+
+  <!-- Particles Canvas & Core JS (All animations via JS) -->
+  <script>
+    // Core Glassmorphism (Section 3)
+    function initGlassmorphism() {
+      // basic style inject (already in CSS, kept for compatibility)
+    }
+
+    // Particle Background (Section 4)
+    function initParticles() {
+      const canvas = document.createElement('canvas');
+      canvas.id = 'particles-canvas';
+      canvas.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;';
+      document.body.prepend(canvas);
+      const ctx = canvas.getContext('2d');
+      function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+      window.addEventListener('resize', resize); resize();
+      const particles = [];
+      const count = 60;
+      class P { constructor(){ this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.r = Math.random()*2+1; this.dx = Math.random()*0.5-0.25; this.dy = Math.random()*0.5-0.25; this.a = Math.random()*0.6+0.2; } move(){ this.x+=this.dx; this.y+=this.dy; if(this.x>canvas.width) this.x=0; if(this.x<0) this.x=canvas.width; if(this.y>canvas.height) this.y=0; if(this.y<0) this.y=canvas.height; } draw(){ ctx.fillStyle = 'rgba(255,255,255,'+this.a+')'; ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI*2); ctx.fill(); } }
+      for(let i=0;i<count;i++){ particles.push(new P()); }
+      function loop(){ ctx.clearRect(0,0,canvas.width, canvas.height); particles.forEach(p=>{ p.move(); p.draw(); }); // simple connections
+        for(let i=0;i<particles.length;i++){ for(let j=i+1;j<particles.length;j++){ const dx=particles[i].x-particles[j].x; const dy=particles[i].y-particles[j].y; const d=Math.hypot(dx,dy); if(d<120){ ctx.strokeStyle = 'rgba(255,255,255,'+ (0.1*(1-d/120)) +')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke(); } } }
+        requestAnimationFrame(loop);
+      }
+      loop();
+    }
+
+    // Custom Cursor (Section 5)
+    function initCustomCursor(){
+      const s = document.createElement('style'); s.textContent = `* { cursor: none !important; } .cursor-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); } .cursor-outline { width: 40px; height: 40px; border: 2px solid var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); } .cursor-outline.expand { transform: translate(-50%, -50%) scale(1.4); background: rgba(255,255,255,0.1); }`;
+      document.head.appendChild(s);
+      const d = document.createElement('div'); d.className = 'cursor-dot'; const o = document.createElement('div'); o.className = 'cursor-outline'; document.body.appendChild(d); document.body.appendChild(o);
+      let mx=0,my=0, ox=0, oy=0;
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; d.style.left = mx+'px'; d.style.top = my+'px'; });
+      (function animate(){ ox += (mx-ox)*0.15; oy += (my-oy)*0.15; o.style.left = ox+'px'; o.style.top = oy+'px'; requestAnimationFrame(animate); })();
+      document.querySelectorAll('a, button, .magnetic').forEach(el => {
+        el.addEventListener('mouseenter', () => o.classList.add('expand'));
+        el.addEventListener('mouseleave', () => o.classList.remove('expand'));
+      });
+    }
+
+    // Dark Mode Toggle (Section 9)
+    function initDarkMode(){
+      const t = document.createElement('button'); t.id='dark-mode-toggle'; t.className='fixed bottom-6 right-6 w-12 h-12 rounded-full glass-button'; t.innerHTML = '🌙'; document.body.appendChild(t);
+      const style = document.createElement('style'); style.textContent = `* { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; } body.dark-mode { background: #0a0a0a; color: #fff; } body.dark-mode .glass { background: rgba(0,0,0,0.6); } body.light-mode { background: #fff; color: #000; }`;
+      document.head.appendChild(style);
+      const saved = localStorage.getItem('darkMode'); if (saved==='dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.body.classList.add('dark-mode'); t.innerText = '☀️'; } else { document.body.classList.add('light-mode'); t.innerText = '🌙'; }
+      t.addEventListener('click', () => { document.body.classList.toggle('dark-mode'); document.body.classList.toggle('light-mode'); const isDark = document.body.classList.contains('dark-mode'); t.innerText = isDark ? '☀️' : '🌙'; localStorage.setItem('darkMode', isDark ? 'dark':'light'); });
+    }
+
+    // Ripple, Tilt, Magnetic (Sections 6-8-7)
+    function initMagneticElements(){ document.querySelectorAll('.magnetic, button, .card').forEach(el => {
+      el.classList.add('magnetic'); el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect(); const x = e.clientX - r.left - r.width/2; const y = e.clientY - r.top - r.height/2; const mX = x*0.3, mY = y*0.3; el.style.transform = `translate(${mX}px, ${mY}px)`; }); el.addEventListener('mouseleave', () => { el.style.transform = 'translate(0,0)'; }); }); }
+    function initRippleEffect(){ document.querySelectorAll('button, .btn, .ripple-container').forEach(btn => {
+      if(!btn.classList.contains('ripple-container')) btn.classList.add('ripple-container'); btn.addEventListener('click', function(e){ const ripple = document.createElement('span'); ripple.className = 'ripple'; const rect = this.getBoundingClientRect(); const size = Math.max(rect.width, rect.height); const x = e.clientX - rect.left - size/2; const y = e.clientY - rect.top - size/2; ripple.style.width = ripple.style.height = size+'px'; ripple.style.left = x+'px'; ripple.style.top = y+'px'; this.appendChild(ripple); setTimeout(()=> ripple.remove(), 600); }); }); }
+    function initCardTilt(){ document.querySelectorAll('.card, .glass-card, [data-tilt]').forEach(card => {
+      card.classList.add('tilt-card'); card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect(); const px = e.clientX - r.left, py = e.clientY - r.top; const cx = r.width/2, cy = r.height/2; const rx = (py - cy)/10; const ry = (cx - px)/10; card.style.setProperty('--rx', rx+'deg'); card.style.setProperty('--ry', ry+'deg'); }); card.addEventListener('mouseleave', () => { card.style.setProperty('--rx','0deg'); card.style.setProperty('--ry','0deg'); }); }); }
+
+    // Animations (Words, Typewriter, Gradient, Split Hover) - basic versions (Section 11)
+    function animateWords(){ document.querySelectorAll('[data-animate="words"]').forEach((el, idx) => {
+      const text = el.textContent.trim().split(' '); el.textContent = ''; text.forEach((w,i) => {
+        const span = document.createElement('span'); span.textContent = w + (i<text.length-1?' ':''); span.style.opacity = '0'; span.style.display = 'inline-block'; span.style.transition = 'opacity 0.6s cubic-bezier(0.34,1.56,0.64,1)'; el.appendChild(span); setTimeout(()=> { span.style.opacity = '1'; }, 50 + idx*60 + i*60);
+      }); }); }
+    function animateTypewriter(){ document.querySelectorAll('[data-animate="typewriter"]').forEach(el => {
+      const text = el.textContent.trim(); el.textContent = ''; const cursor = document.createElement('span'); cursor.textContent = '|'; el.appendChild(cursor); let i=0; const t = setInterval(()=>{ if(i<text.length){ cursor.before(document.createTextNode(text.charAt(i))); i++; } else { clearInterval(t); cursor.remove(); } }, parseInt(el.dataset.speed) || 60); }); }
+    function animateGradient(){ document.querySelectorAll('[data-animate="gradient"]').forEach(el => {
+      el.style.background = 'linear-gradient(90deg, var(--accent), var(--secondary), var(--accent))'; el.style.backgroundSize = '200% auto'; el.style.webkitBackgroundClip = 'text'; el.style.color = 'transparent'; el.style.backgroundClip = 'text'; el.style.animation = 'gradientShift 3s ease infinite'; }); if(!document.getElementById('gradient-animation')) {
+      const s = document.createElement('style'); s.id = 'gradient-animation'; s.textContent = '@keyframes gradientShift { 0%,100%{ background-position:0% 50%; } 50%{ background-position:100% 50%; } }'; document.head.appendChild(s);
+    }
+    }
+    function animateSplitHover(){ document.querySelectorAll('[data-animate="split-hover"]').forEach(el => {
+      const text = el.textContent.trim(); el.textContent = ''; text.split('').forEach(ch => {
+        const sp = document.createElement('span'); sp.textContent = ch === ' ' ? '\u00A0' : ch; sp.style.display = 'inline-block'; sp.style.transition = 'transform 0.3s'; el.appendChild(sp);
+        sp.addEventListener('mouseenter', () => { sp.style.transform = 'translateY(-6px) scale(1.3)'; sp.style.color = 'var(--accent)'; sp.style.textShadow = '0 0 20px currentColor'; });
+        sp.addEventListener('mouseleave', () => { sp.style.transform = 'translateY(0) scale(1)'; sp.style.color = ''; sp.style.textShadow = ''; });
+      });
+    }); }
+
+    // Scroll Animations (IntersectionObserver) - basic (Section 12)
+    function initScrollAnimations(){ const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ const el = e.target; const a = el.dataset.scrollAnimate || 'fadeUp'; el.classList.add('animate-'+a); el.style.opacity = '1'; obs.unobserve(el); } }); }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+      document.querySelectorAll('[data-scroll-animate]').forEach(el => { el.style.opacity = '0'; obs.observe(el); });
+      const style = document.createElement('style'); style.textContent = '.animate-fadeUp { animation: fadeUp 0.8s ease-out forwards; } @keyframes fadeUp { from { opacity:0; transform: translateY(40px);} to { opacity:1; transform: translateY(0);} }'; document.head.appendChild(style);
+    }
+
+    // Smooth scrolling for anchors
+    function initSmoothScroll(){ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if(target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    })); }
+
+    // Parallax hero
+    function initParallax(){ const h = document.querySelector('[data-parallax]'); if(!h) return; window.addEventListener('scroll', () => {
+      const y = window.pageYOffset; h.style.transform = 'translateY(' + (y * 0.25) + 'px)';
+    }); }
+
+    // Initialize all features (Section 13)
+    function initAllModernFeatures(){ initGlassmorphism(); initParticles(); initCustomCursor(); initDarkMode(); initMagneticElements(); initRippleEffect(); initCardTilt(); animateWords(); animateTypewriter(); animateGradient(); animateSplitHover(); initScrollAnimations(); initSmoothScroll(); initParallax(); // hide loading
+      const loader = document.getElementById('loading-screen'); if(loader){ loader.style.opacity = '0'; loader.style.transition = 'opacity 0.5s ease-out'; setTimeout(() => loader.remove(), 600); }
+    }
+
+    // DOM Ready
+    document.addEventListener('DOMContentLoaded', initAllModernFeatures);
+  </script>
+</body>
+</html>
